@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -16,11 +17,13 @@ public class DiscountDAORepository implements DiscountDAO {
 	JdbcTemplate jt;
 	@Autowired
 	DataSource ds;
+	@Autowired
+	DiscountJPARepository jpaRepo;
 	@Override
 	public boolean postDiscount(Discount discount) throws SQLException {
 		// TODO Auto-generated method stub
 		String query = "insert into discount values (?,?,?,?)";
-		int i = jt.update(query, new Object[] {discount.getD_id(), discount.getP_id(), discount.getU_id(), discount.getDiscount()});
+		int i = jt.update(query, new Object[] {0, discount.getP_id(), discount.getUserId(), discount.getDiscount()});
 		if(i>0)
 			return true;
 		else
@@ -39,7 +42,7 @@ public class DiscountDAORepository implements DiscountDAO {
 		{
 			d.setD_id(rs.getInt(1));
 			d.setP_id(rs.getInt(2));
-			d.setU_id(rs.getInt(3));
+			d.setUserId(rs.getInt(3));
 			d.setDiscount(rs.getDouble(4));
 		}
 		return d;
@@ -54,6 +57,12 @@ public class DiscountDAORepository implements DiscountDAO {
 			return true;
 		else
 			return false;
+	}
+
+	@Override
+	public List<Discount> findAllByUserId(int userId) {
+		// TODO Auto-generated method stub
+		return jpaRepo.findAllByUserId(userId);
 	}
 
 }

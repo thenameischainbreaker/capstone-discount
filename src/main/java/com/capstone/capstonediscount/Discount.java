@@ -1,15 +1,18 @@
 package com.capstone.capstonediscount;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+@Entity
 public class Discount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int d_id;
 	private int p_id;
-	private int u_id;
+	@Column(name = "u_id")
+	private int userId;
 	private double discount;
 	
 	public Discount() {}
@@ -18,7 +21,7 @@ public class Discount {
 	{
 		this.d_id = d_id;
 		this.p_id = p_id;
-		this.u_id = u_id;
+		this.userId = u_id;
 		this.discount = discount;
 	}
 
@@ -38,12 +41,13 @@ public class Discount {
 		this.p_id = p_id;
 	}
 
-	public int getU_id() {
-		return u_id;
+
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setU_id(int u_id) {
-		this.u_id = u_id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public double getDiscount() {
