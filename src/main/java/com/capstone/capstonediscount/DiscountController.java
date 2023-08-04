@@ -22,7 +22,7 @@ import com.capstone.capstonediscount.UserRole;
 
 @RestController
 @RequestMapping("/discount")
-@CrossOrigin(origins = "https://domainofchain.s3.us-east-2.amazonaws.com")
+@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com","http://localhost:4200/"})
 public class DiscountController {
 	@Autowired
 	DiscountDAO repo;
