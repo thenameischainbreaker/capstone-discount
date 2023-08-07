@@ -22,7 +22,7 @@ import com.capstone.capstonediscount.UserRole;
 
 @RestController
 @RequestMapping("/discount")
-@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com","http://localhost:4200/"})
+@CrossOrigin(origins = {"https://domainofchain.s3.us-east-2.amazonaws.com","http://localhost:4200/", "http://localhost:4200/","https://capstone-angular-jj.s3.us-east-2.amazonaws.com"})
 public class DiscountController {
 	@Autowired
 	DiscountDAO repo;
@@ -45,19 +45,19 @@ public class DiscountController {
 			
 			
 			if(repo.postDiscount(discount))
-				return "Discount Posted";
+				return "\"Discount Posted\"";
 			else {
-				return "Discount Not Posted";
+				return "\"Discount Not Posted\"";
 			}
 		} catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "Error in posting discount. Check permissions.";
+			return "\"Error in posting discount. Check permissions.\"";
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "Error in posting discount.";
+			return "\"Error in posting discount.\"";
 		}
 	}
 	
@@ -104,19 +104,19 @@ public class DiscountController {
 		 */
 		try {
 			if(repo.deleteDiscount(discount_id))
-				return "Discount Deleted";
+				return "\"Discount Deleted\"";
 			else
-				return "Discount Not Deleted";
+				return "\"Discount Not Deleted\"";
 		}
 		    catch (SecurityException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "Error in deleting discount. Check permissions or if discount matches your user_id.";
+			return "\"Error in deleting discount. Check permissions or if discount matches your user_id.\"";
 		}
 		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "Error in deleting discount";
+			return "\"Error in deleting discount\"";
 		}
 	}
 	@GetMapping("/findAllByUserId")
