@@ -45,6 +45,7 @@ public class DiscountDAORepository implements DiscountDAO {
 			d.setUserId(rs.getInt(3));
 			d.setDiscount(rs.getDouble(4));
 		}
+		con.close();
 		return d;
 	}
 
